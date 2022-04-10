@@ -15,7 +15,7 @@
 <br>
 ```which``` - returns  the  pathnames of the files (or links) which would be executed in the current environment, had its arguments been given as commands in a strictly POSIX-conformant shell.  It does this by searching the PATH for executable files matching the names of the arguments. It does not canonicalize path names.
 <br>
-```history ``` - Many  programs  read  input  from the user a line at a time.  The GNU History library is able to keep track of those lines, associate arbitrary data with each line, and utilize information from previous lines in composing new ones.
+```history``` - Many  programs  read  input  from the user a line at a time.  The GNU History library is able to keep track of those lines, associate arbitrary data with each line, and utilize information from previous lines in composing new ones.
 <br>
 ```whatis``` - Each manual page has a short description available within it.  whatis searches the manual page names and displays the manual page descriptions of any name matched.
 <br>
