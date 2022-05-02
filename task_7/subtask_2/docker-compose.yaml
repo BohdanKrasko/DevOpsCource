@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mysql:
+    build: wordpress_mysql
+    container_name: wordpress_mysql
+    networks:
+      - net
+  nginx:
+    build: wordpress_nginx
+    container_name: wordpress_nginx
+    ports: 
+      - 8001:80
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
