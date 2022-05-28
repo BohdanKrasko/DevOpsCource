@@ -1,11 +1,12 @@
 pipeline {
     agent any
     parameters {
-    choice(
-        name: 'action',
-        choices: "stop\start",
-        description: 'Action' )
-  }
+        choice (
+        choices: ['stop', 'start'],
+        description: '',
+        name: 'action'
+        )
+    }
 
     stages {
         stage('Hello') {
