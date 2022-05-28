@@ -7,7 +7,7 @@ pipeline {
 
     parameters {
         choice (
-        choices: ['stop', 'start'],
+        choices: ['start', 'destroy'],
         description: '',
         name: 'action'
         )
@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Terrafom') {
+        stage('Deploy infra') {
             when {
                 expression { params.action == 'start'}
             }
@@ -31,7 +31,24 @@ pipeline {
                         sh 'terraform --version'
                         sh 'terraform init'
                         sh 'terraform plan'
-                        // sh 'terraform apply -auto-approve'
+                        sh 'terraform apply -auto-approve'
+                    }
+                }
+            }
+        }
+
+        stage('Destroy infra') {
+            when {
+                expression { params.action == 'destroy'}
+            }
+            steps {
+                
+                dir('task_10') {
+                    withAWS(credentials:'cloud-tech', region:'us-east-1') {
+                        sh 'terraform --version'
+                        sh 'terraform init'
+                        sh 'terraform plan'
+                        sh 'terraform apply -auto-approve'
                     }
                 }
             }
