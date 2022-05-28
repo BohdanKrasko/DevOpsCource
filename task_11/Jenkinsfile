@@ -27,7 +27,7 @@ pipeline {
             steps {
                 
                 dir('task_10') {
-                    withAWS(credentials:'cloud-tech', region:'us-east-1', profile: 'cloud-tech') {
+                    withAWS(credentials:'cloud-tech', region:'us-east-1') {
                         sh 'terraform --version'
                         sh 'terraform init'
                         sh 'terraform plan'
