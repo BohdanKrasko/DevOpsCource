@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    parameters {
+    choice(
+        name: 'action',
+        choices: "stop\start",
+        description: 'Action' )
+  }
 
     stages {
         stage('Hello') {
@@ -7,5 +13,21 @@ pipeline {
                 echo 'Hello World'
             }
         }
+    }
+
+    stage('Terrafom') {
+      when {
+        expression { params.action == 'start'}
+      }
+      steps {
+        
+        dir('task_10') {
+          withAWS(credentials:'cloud-tech', region:'us-east-1', profile: 'cloud-tech') {
+            sh 'terraform init'
+            sh 'terraform plan'
+            // sh 'terraform apply -auto-approve'
+         }
+        }
+      }
     }
 }
