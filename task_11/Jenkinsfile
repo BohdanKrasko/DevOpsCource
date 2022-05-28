@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        terraform 'terraform1.1.9'
+        terraform 'terraform'
     }
 
     parameters {
@@ -28,6 +28,7 @@ pipeline {
                 
                 dir('task_10') {
                     withAWS(credentials:'cloud-tech', region:'us-east-1', profile: 'cloud-tech') {
+                        sh 'terraform --version'
                         sh 'terraform init'
                         sh 'terraform plan'
                         // sh 'terraform apply -auto-approve'
