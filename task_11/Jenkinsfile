@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    // tools {
-    //     terraform: "terraform1.1.9"
-    // }
+    tools {
+        terraform 'terraform1.1.9'
+    }
 
     parameters {
         choice (
