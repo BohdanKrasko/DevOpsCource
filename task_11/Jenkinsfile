@@ -20,6 +20,14 @@ pipeline {
             }
         }
 
+        stage('Terraform init') {
+            steps {
+                dir('task_10') {
+                    sh 'terraform init'
+                }
+            }
+        }
+
         stage('Deploy infra') {
             when {
                 expression { params.action == 'start'}
@@ -28,8 +36,6 @@ pipeline {
                 
                 dir('task_10') {
                     withAWS(credentials:'cloud-tech', region:'us-east-1') {
-                        sh 'terraform --version'
-                        sh 'terraform init'
                         sh 'terraform plan'
                         sh 'terraform apply -auto-approve'
                     }
@@ -45,10 +51,7 @@ pipeline {
                 
                 dir('task_10') {
                     withAWS(credentials:'cloud-tech', region:'us-east-1') {
-                        sh 'terraform --version'
-                        sh 'terraform init'
-                        sh 'terraform plan'
-                        sh 'terraform apply -auto-approve'
+                        sh 'terraform destroy -auto-approve'
                     }
                 }
             }
