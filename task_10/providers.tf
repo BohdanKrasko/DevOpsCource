@@ -1,7 +1,5 @@
 provider "aws" {
-  region                  = "us-east-1"
-  # shared_credentials_files = [ "~/.aws/credentials" ]
-  # profile                 = "cloud_tech"
+  region = "us-east-1"
 }
 
 terraform {
@@ -10,8 +8,5 @@ terraform {
     key            = "task-10/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-state-lock-dynamo"
-    # profile = "cloud_tech"
   }
-
-  
 }
